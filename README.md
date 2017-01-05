@@ -10,8 +10,11 @@ RDTAck class is the class that represents Acknowledgements. It has a member vari
 
 
 RDTPacket class represents the packet that is sent from the sender  to the receiver. It contains the following member variables.
+
 a. seq which is the sequence number of the packet being sent(int)
+
 b. data is a byte in size and contains one byte of information
+
 c. a boolean variable last to signify whether the corresponding packet is the last to be sent.
 
 
