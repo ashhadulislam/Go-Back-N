@@ -19,13 +19,17 @@ c. a boolean variable last to signify whether the corresponding packet is the la
 
 
 The Sender class is used to emulate a UDP sending agent follwing the Go Back N protocol. 
+
 A probability is set that defines the success rate of the transmission, the window size and the timer(time before re sending all non acknowledged packets) is also set.
 There is a sending loop that keeps sending the packets as long as the number of acknowledgements yet to be received is less than the window size.
+
 There is also a timeout handling module that, when invoked, sends all the sent but non Acknowledged packets.
 
 
 The Receiver class is used to emulate a UDP receiving agent following the Go Back N protocol.
+
 It has its own marker variable (waitingfor) that reprresents the sequence number of the packet that it is waiting for. If the value of the marker matches the sequence number of the packet, it adds the packet to its buffer and increments its marker. Else, it simply ignores that packet. In both cases, the receiver sends the value of its marker to the Sender denoting the sequence number of the packet that it is expecting.
+
 In this class also, there is a probability variable that defines the prbability of the ACK reaching the Sender successfully. In both the classes, the PROBABILITY variable is used to manually insert errors in transmission.
 
 
