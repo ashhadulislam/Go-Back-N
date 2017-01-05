@@ -17,8 +17,10 @@ public class Receiver {
 		
 		int waitingFor = 0;
 		
+		// List of all the packets received
 		ArrayList<RDTPacket> received = new ArrayList<RDTPacket>();
 		
+		//denotes whether last packet has been received
 		boolean end = false;
 		
 		while(!end){
@@ -34,6 +36,8 @@ public class Receiver {
 			
 			System.out.println("Packet with sequence number " + packet.getSeq() + " received (last: " + packet.isLast() + " )");
 		
+			//case where packet received is the one expected
+			//and it is the last packet
 			if(packet.getSeq() == waitingFor && packet.isLast()){
 				
 				waitingFor++;
@@ -43,7 +47,10 @@ public class Receiver {
 				
 				end = true;
 				
-			}else if(packet.getSeq() == waitingFor){
+			}
+			//case where packet received is not the last
+			//but it is the expected packet
+			else if(packet.getSeq() == waitingFor){
 				waitingFor++;
 				received.add(packet);
 				System.out.println("Packed stored in buffer");
